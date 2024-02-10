@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import kotlinx.serialization.descriptors.PolymorphicKind.SEALED;
 import pl.touk.sputnik.processor.eslint.json.FileViolations;
 import pl.touk.sputnik.processor.eslint.json.Message;
 import pl.touk.sputnik.processor.tools.externalprocess.ExternalProcessResultParser;
