@@ -2,7 +2,6 @@ package pl.touk.sputnik.processor.eslint;
 
 import com.google.common.io.Resources;
 import org.apache.commons.io.IOUtils;
-import org.jetbrains.kotlin.ir.backend.js.export.ExportedType.Primitive.String;
 import org.junit.jupiter.api.Test;
 import pl.touk.sputnik.review.Violation;
 
@@ -29,8 +28,8 @@ public class ESLintResultParserTest {
 
     @Test
     public void shouldAddNumbers() {
-        java.lang.String result = esLintResultParser.warning();
-        assertThat(result).isEqualTo("WARNING!");
+        String response = esLintResultParser.warning();
+        assertThat(response).isEqualTo("WARNING!");
     }
 
 }
