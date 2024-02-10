@@ -26,4 +26,10 @@ public class ESLintResultParserTest {
                 .contains("Unexpected console statement.");
     }
 
+    @Test
+    public void shouldAddNumbers() {
+        int result = esLintResultParser.addition(1, 2);
+        assertThat(result).isEqualTo(3);
+    }
+
 }

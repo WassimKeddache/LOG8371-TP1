@@ -3,6 +3,8 @@ package pl.touk.sputnik.processor.eslint;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import kotlinx.serialization.descriptors.PolymorphicKind.SEALED;
 import pl.touk.sputnik.processor.eslint.json.FileViolations;
 import pl.touk.sputnik.processor.eslint.json.Message;
 import pl.touk.sputnik.processor.tools.externalprocess.ExternalProcessResultParser;
@@ -15,14 +17,16 @@ import java.util.List;
 
 class ESLintResultParser implements ExternalProcessResultParser {
 
-    private final ObjectMapper objectMapper = new ObjectMapper().configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    private final ObjectMapper objectMapper = new ObjectMapper()
+            .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
     @Override
     public List<Violation> parse(String output) {
         List<Violation> result = new ArrayList<>();
         try {
-            List<FileViolations> fileViolations =
-                    objectMapper.readValue(output, new TypeReference<List<FileViolations>>() { });
+            List<FileViolations> fileViolations = objectMapper.readValue(output,
+                    new TypeReference<List<FileViolations>>() {
+                    });
             for (FileViolations violation : fileViolations) {
                 for (Message message : violation.getMessages()) {
                     result.add(new Violation(violation.getFilePath(), message.getLine(), message.getMessage(),
@@ -33,6 +37,10 @@ class ESLintResultParser implements ExternalProcessResultParser {
             throw new ESLintException("Error when converting from json format", e);
         }
         return result;
+    }
+
+    public int addition(int number1, int number2) {
+        return number1 + number2;
     }
 
     private Severity mapSeverity(int eslintValue) {
