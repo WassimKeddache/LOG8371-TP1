@@ -9,7 +9,7 @@ import pl.touk.sputnik.review.Paths;
 @Getter
 public enum GeneralOption implements ConfigurationOption {
 
-    BUILD_TOOL("project.build.tool", "Build tool: <maven|gradle>", BuildTool.MAVEN.getName()),
+    BUILD_TOOL("project.build.tool", "Build tool: gradle", BuildTool.GRADLE.getName()),
 
     PROCESS_TEST_FILES("global.processTestFiles", "Process test files?", "true"),
     MAX_NUMBER_OF_COMMENTS("global.maxNumberOfComments", "Maximum number of comments to submit", "0"),

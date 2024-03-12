@@ -27,7 +27,7 @@ public class ESLintResultParserTest {
     }
 
     @Test
-    public void shouldAddNumbers() {
+    public void shouldReturnWarning() {
         String response = esLintResultParser.warning();
         assertThat(response).isEqualTo("WARNING!");
     }
